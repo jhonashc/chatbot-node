@@ -3,6 +3,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import express, { Application } from 'express';
 
+import { exceptionHandler } from './middlewares';
+
 interface Options {
   port: number;
   publicPath?: string;
@@ -34,6 +36,9 @@ export class Server {
 
     //* Routes
     this.routes();
+
+    //* Custom Middlewares
+    this.app.use(exceptionHandler);
   }
 
   private routes(): void {}
